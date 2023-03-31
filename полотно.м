@@ -1,0 +1,44 @@
+js "
+const mavka = getMavka();
+const mavkaContext = getContext();
+
+mavkaContext.set('створити_полотно', mavka.makeWrappedProxyFunction(([w = 500, h = 500]) => {
+  const app = document.querySelector('#app');
+
+  const canvasElement = document.createElement('canvas');
+  canvasElement.width = w;
+  canvasElement.height = h;
+
+  app.appendChild(canvasElement);
+
+  app.setAttribute('style', 'height: 100%; display: flex; justify-content: center; align-items: center;');
+
+  const canvasContext = canvasElement.getContext('2d');
+
+  return {
+    'розпочати_шлях': () => {
+      canvasContext.beginPath();
+    },
+    'дуга': (...args) => {
+        canvasContext.arc(...args);
+    },
+    'заповнити_стиль': (style) => {
+      canvasContext.fillStyle = style;
+    },
+    'заповнити': () => {
+      canvasContext.fill();
+    },
+    'змінити_товщину_лінії': (width) => {
+      canvasContext.lineWidth = width;
+    },
+    'змінити_стиль_лінії': (style) => {
+      canvasContext.strokeStyle = style;
+    },
+    'нарисувати_лінію': () => {
+      canvasContext.stroke();
+    },
+  };
+}));
+"
+
+дати створити_полотно
