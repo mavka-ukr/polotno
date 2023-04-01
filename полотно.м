@@ -22,6 +22,9 @@ mavkaContext.set('створити_полотно', mavka.makeWrappedProxyFuncti
     'дуга': (...args) => {
         canvasContext.arc(...args);
     },
+    'прямокутник': (...args) => {
+        canvasContext.rect(...args);
+    },
     'заповнити_стиль': (style) => {
       canvasContext.fillStyle = style;
     },
